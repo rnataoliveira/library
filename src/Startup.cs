@@ -41,7 +41,7 @@ namespace Library
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Library.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +14,6 @@ namespace Library.Controllers
         public BooksController() 
         {
             _database = new List<Book>();
-        }
-
-        public IActionResult Details() {
             var book = new Book();
             book.Isbn = "978-1680502008";
             book.Subject = "Informática";
@@ -30,8 +28,17 @@ namespace Library.Controllers
             author.Surname = "Thomas";
 
             book.Authors.Add(author);
+            _database.Add(book);
+        }
 
-            return View(book);
+        public IActionResult Details(string isbn) 
+        {
+            var foundBook = _database.FirstOrDefault(book => book.Isbn == isbn);
+
+            if(foundBook == null)
+                return NotFound();
+                
+            return View(foundBook);
         }
     }
 }

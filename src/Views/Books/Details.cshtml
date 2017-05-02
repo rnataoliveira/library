@@ -1,3 +1,31 @@
 @model Library.Models.Book
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-
+<div class="col-12 mb-4 mt-4">
+    <h1>@Model.Title</h1>
+</div>
+<section class="mt-4 row ">
+    <div class="col-4 mb-4 ">
+    <div class="card" style="width: 20rem;">
+        <img class="card-img-top " src="@Model.Cover" alt="Capa do livro:@Model.Title" style="width: 320px;">
+    </div>
+    </div>
+    <div class="col-4 mb-4 ">
+    <div class="card" style="width: 20rem;">
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">Autor: @string.Join(";", Model.Authors.Select(author =>$"{author.Surname}, {author.Name}"))</li>
+        <li class="list-group-item">ISBN: @Model.Isbn</li>
+        <li class="list-group-item">Assunto: @Model.Subject</li>
+        </ul>
+    </div>
+    <div class="mt-5 ">
+        <a href="#" class="align-middle ">Reservar este livro</a>
+    </div>
+    </div>
+    <div class="col-12 card">
+    <h4>Descrição</h4>
+    @Model.Description
+    </div>
+</section>

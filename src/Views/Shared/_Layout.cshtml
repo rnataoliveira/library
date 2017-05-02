@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biblioteca Impacta</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-light bg-faded navbar-toggleable-md">
+      <div class="container">
+        <a class="navbar-brand" href="#">Biblioteca Impacta</a>
+        <div class="navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Pesquise por título, autor, isbn...">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+          </form>
+          <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              Fulano
+              </a>
+              <div class="dropdown-menu" aria-labelledby="Preview">
+                <a class="dropdown-item" href="#">Meus empréstimos</a>
+                <a class="dropdown-item" href="#">Minhas Reservas</a>
+                <a class="dropdown-item" href="#">Sair</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+      @RenderBody()
+  </main>
+</body>
+</html>
