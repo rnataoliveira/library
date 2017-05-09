@@ -1,0 +1,39 @@
+    @model IEnumerable<Library.Models.Book>
+
+<div class="container">
+    <form action="" method="GET" class="row mt-3">
+        <div class="col-8">
+            <input type="text" class="form-control" name="q" placeholder="Pesquise por título, autor, isbn..." />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+    <section id="search-results" class="mt-4 row ">
+        @foreach(var book in Model) 
+        {
+            <div class="col-4 mb-4 ">
+                <div class="card" style="width: 20rem;">
+                    <img class="card-img-top " src="@book.Cover" alt="Card image cap" style="width: 320px;">
+                    <div class="card-block">
+                        <h4 class="card-title">@book.Title</h4>
+                        <p class="card-text">@book.ShortDescription</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Autor: @book.Author</li>
+                        <li class="list-group-item">ISBN: @book.Isbn</li>
+                    </ul>
+                    <div class="card-block">
+                        <a href="#" class="card-link">Reservar este livro</a>
+                        <a class="card-link" asp-controller="Books" asp-action="Details" asp-route-isbn="@book.Isbn">Ver mais</a>
+                    </div>
+                </div>
+            </div>  
+        }
+    </section>
+    <div class="row">
+        <div class="col-12 text-center">
+            <a href="#" class="btn btn-primary">Ver mais resultados</a>
+        </div>
+    </div>
+</div>

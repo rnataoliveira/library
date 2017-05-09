@@ -1,20 +1,26 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library.Models
 {
     public class Book 
     {
-        public string Isbn;
+        [Key]
+        public string Isbn { get; set; }
 
-        public string Title;
+        public string Title { get; set; }
 
-        public string Subject;
+        public string Subject { get; set; }
 
-        public string Description;
+        public string Description { get; set; }
 
-        public string Cover;
+        public string ShortDescription => Description.Substring(0, 200) + "...";
 
-        public ICollection<Author> Authors;
+        public string Cover { get; set; }
+
+        public string Author { get; set; }
+
+        public int stock { get; set; }
 
     }
 }

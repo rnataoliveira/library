@@ -1,7 +1,4 @@
 @model Library.Models.Book
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 <div class="col-12 mb-4 mt-4">
     <h1>@Model.Title</h1>
@@ -15,7 +12,7 @@
     <div class="col-4 mb-4 ">
     <div class="card" style="width: 20rem;">
         <ul class="list-group list-group-flush">
-        <li class="list-group-item">Autor: @string.Join(";", Model.Authors.Select(author =>$"{author.Surname}, {author.Name}"))</li>
+        <li class="list-group-item">Autor: @Model.Author</li>
         <li class="list-group-item">ISBN: @Model.Isbn</li>
         <li class="list-group-item">Assunto: @Model.Subject</li>
         </ul>

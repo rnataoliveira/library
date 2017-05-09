@@ -7,38 +7,51 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers
 {
+    [Route("books")]
     public class BooksController : Controller
     {
-        readonly List<Book> _database;
-
-        public BooksController() 
+        readonly LibraryDbContext _dbContext;
+        public BooksController(LibraryDbContext dbContext) 
         {
-            _database = new List<Book>();
-            var book = new Book();
-            book.Isbn = "978-1680502008";
-            book.Subject = "Informática";
-            book.Title = "Programming Elixir 1.3: Functional |> Concurrent |> Pragmatic |> Fun";
-            book.Cover = "https://images-na.ssl-images-amazon.com/images/I/41jWVuRV30L._SX404_BO1,204,203,200_.jpg";
-            book.Description = "Explore functional programming without the academic overtones (tell me about monads just one more time). Create concurrent applications, but get them right without all the locking and consistency headaches. Meet Elixir, a modern, functional, concurrent language built on the rock-solid Erlang VM. Elixir's pragmatic syntax and built-in support for metaprogramming will make you productive and keep you interested for the long haul. Maybe the time is right for the Next Big Thing. Maybe it's Elixir. This book is the introduction to Elixir for experienced programmers, completely updated for Elixir 1.3.";
-
-            book.Authors = new Collection<Author>();
-
-            var author = new Author();
-            author.Name = "Dave";
-            author.Surname = "Thomas";
-
-            book.Authors.Add(author);
-            _database.Add(book);
+            _dbContext = dbContext;
         }
 
+        [Route("{isbn}")]
         public IActionResult Details(string isbn) 
         {
-            var foundBook = _database.FirstOrDefault(book => book.Isbn == isbn);
+            //Busca o livro no banco de dados
+            var foundBook = _dbContext.Books.FirstOrDefault(book => book.Isbn == isbn);
 
+            // Se não encontrar retorna um 404
             if(foundBook == null)
                 return NotFound();
                 
             return View(foundBook);
+        }
+
+        public IActionResult Search(string q) 
+        {
+            if(string.IsNullOrEmpty(q))
+                return View(_dbContext.Books);
+
+            var books = _dbContext.Books.Where(book => 
+                book.Author.Contains(q) ||
+                book.Title.Contains(q) ||
+                book.Isbn == q
+            );
+
+            if(books.Count() == 1)
+                return RedirectToAction("Details", new {
+                    Isbn = books.First().Isbn
+                });
+
+            return View(books);
+        }
+
+        public IActionResult Reservation(string book)
+        {
+
+            return View();
         }
     }
 }
