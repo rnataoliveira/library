@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -5,6 +6,15 @@ namespace Library.Models
 {
     public class Book 
     {
+        public Book() { }
+
+        public Book(string isbn, int copies)
+        {
+            Isbn = isbn;
+            Copies = copies;
+            AvailableCopies = copies;
+        }
+
         [Key]
         public string Isbn { get; set; }
 
@@ -20,7 +30,10 @@ namespace Library.Models
 
         public string Author { get; set; }
 
-        public int stock { get; set; }
+        public int Copies { get; protected set; }
 
+        public int AvailableCopies { get; set; }
+
+        public bool IsAvailableForReservation => AvailableCopies == 0;
     }
 }

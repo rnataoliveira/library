@@ -47,11 +47,5 @@ namespace Library.Controllers
 
             return View(books);
         }
-
-        public IActionResult Reservation(string book)
-        {
-
-            return View();
-        }
     }
 }
