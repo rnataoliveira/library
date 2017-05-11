@@ -18,7 +18,11 @@
         </ul>
     </div>
     <div class="mt-5 ">
-        <a href="#" class="align-middle ">Reservar este livro</a>
+        <form asp-action="Post" asp-controller="Reservations">
+            <input type="hidden" name="AcademicRecord" value="1600041" />
+            <input type="hidden" name="Isbn" value="@Model.Isbn" />
+            <button class="align-middle btn">Reservar este livro</button>
+        </form>
     </div>
     </div>
     <div class="col-12 card">

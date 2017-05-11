@@ -1,4 +1,4 @@
-namespace Library.ReservationContext.Commands
+namespace Library.Features.Reservation.Commands
 {
     public class MakeAReservationCommand
     {

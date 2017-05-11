@@ -2,19 +2,22 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using Library.Models;
 
-namespace Library.ReservationContext.DomainModel
+namespace Library.Features.Reservation.DomainModel
 {
     public class Reservation
     {
         public Reservation() { }
 
-        public Reservation(string ar, Book book)
+        public Reservation(string academicRecord, Book book)
         {
-            if (!Book.IsAvailableForReservation)
+            if (!book.IsAvailableForReservation)
                 throw new InvalidOperationException("Book is not available for reservation.");
+
+            if(string.IsNullOrEmpty(academicRecord))
+                throw new ArgumentException(nameof(academicRecord));
             
             Number = Guid.NewGuid();
-            AcademicRecord = ar;
+            AcademicRecord = academicRecord;
             Book = book;
             ReservationDate = DateTime.UtcNow;
         }

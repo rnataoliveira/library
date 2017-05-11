@@ -1,0 +1,8 @@
+@model Reservation
+
+@if(!string.IsNullOrEmpty(TempData["SuccessMessage"])) 
+{
+    <span>@TempData["SuccessMessage"]</span>
+}
+
+<h1>@Model.Number</h1>

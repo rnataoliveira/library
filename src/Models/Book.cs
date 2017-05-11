@@ -32,8 +32,20 @@ namespace Library.Models
 
         public int Copies { get; protected set; }
 
-        public int AvailableCopies { get; set; }
+        int _availableCopies;
 
-        public bool IsAvailableForReservation => AvailableCopies == 0;
+        public int AvailableCopies 
+        { 
+            get { return _availableCopies; }
+            set 
+            { 
+                _availableCopies = value; 
+                
+                //Se as copias disponiveis forem = 0 está disponivel para reserva, se não não.
+                IsAvailableForReservation = _availableCopies <= 0;
+            }
+        }
+
+        public bool IsAvailableForReservation { get; protected set; }
     }
 }

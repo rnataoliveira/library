@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Library.ReservationContext.DomainModel;
+using Library.Features.Reservation.DomainModel;
 
 namespace Library.Models
 {
