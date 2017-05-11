@@ -31,15 +31,18 @@ namespace Library.Controllers
 
         public IActionResult Search(string q) 
         {
+            //Inicialmente mostra todos os livros
             if(string.IsNullOrEmpty(q))
                 return View(_dbContext.Books);
 
+            //Verifica se a busca é válida
             var books = _dbContext.Books.Where(book => 
                 book.Author.Contains(q) ||
                 book.Title.Contains(q) ||
                 book.Isbn == q
             );
 
+            //Se a busca retornar apenas um livro já redireciona para a página do livro
             if(books.Count() == 1)
                 return RedirectToAction("Details", new {
                     Isbn = books.First().Isbn
