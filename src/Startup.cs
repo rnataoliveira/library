@@ -9,9 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using Microsoft.Extensions.Configuration;
-using Library.Models;
+using Library.Features.Reservation.DomainModel;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Library.Models;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Library
 {
@@ -36,6 +38,7 @@ namespace Library
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables()
+                .AddUserSecrets<Startup>()
                 .Build();
         }
 
@@ -48,6 +51,8 @@ namespace Library
             services
                 .AddMvc()
                 .AddFeatureFolders();
+
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
 
             //Configurando o DBContext
             services

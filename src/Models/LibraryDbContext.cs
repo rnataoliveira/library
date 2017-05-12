@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Library.Features.Reservation.DomainModel;
+using Library.Features.BookCatalog.DomainModel;
+
 
 namespace Library.Models
 {

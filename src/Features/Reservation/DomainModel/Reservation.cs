@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using Library.Models;
+using Library.Features.BookCatalog.DomainModel;
 
 namespace Library.Features.Reservation.DomainModel
 {

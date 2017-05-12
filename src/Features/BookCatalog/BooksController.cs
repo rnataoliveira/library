@@ -5,7 +5,7 @@ using System.Linq;
 using Library.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Library.Controllers
+namespace Library.Features.BookCatalog
 {
     [Route("books")]
     public class BooksController : Controller

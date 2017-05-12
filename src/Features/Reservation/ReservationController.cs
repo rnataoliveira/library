@@ -38,8 +38,8 @@ namespace Library.Features.Reservation
 
             //commit
             _context.SaveChanges();
-            
-            TempData["SuccessMessage"] = "Reserva criada com sucesso!";
+
+            TempData["ReservationSuccess"] = "Reserva criada com sucesso!";
             
             return RedirectToAction($"{nameof(Get)}", new { ReservationNumber = reservation.Number });
         }

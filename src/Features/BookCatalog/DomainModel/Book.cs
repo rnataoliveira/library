@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Library.Models
+namespace Library.Features.BookCatalog.DomainModel
 {
     public class Book 
     {

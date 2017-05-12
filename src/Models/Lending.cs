@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Library.Features.BookCatalog.DomainModel;
 
 namespace Library.Models
 {

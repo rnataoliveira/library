@@ -1,4 +1,4 @@
-    @model IEnumerable<Library.Models.Book>
+@model IEnumerable<Library.Features.BookCatalog.DomainModel.Book>
 
 <div class="container">
     <form action="" method="GET" class="row mt-3">
@@ -24,8 +24,7 @@
                         <li class="list-group-item">ISBN: @book.Isbn</li>
                     </ul>
                     <div class="card-block">
-                        <a href="#" class="card-link">Reservar este livro</a>
-                        <a class="card-link" asp-controller="Books" asp-action="Details" asp-route-isbn="@book.Isbn">Ver mais</a>
+                        <a class="card-link align-center" asp-controller="Books" asp-action="Details" asp-route-isbn="@book.Isbn">Ver mais</a>
                     </div>
                 </div>
             </div>  
