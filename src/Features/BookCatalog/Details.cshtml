@@ -10,23 +10,26 @@
     </div>
     </div>
     <div class="col-4 mb-4 ">
-    <div class="card" style="width: 20rem;">
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item">Autor: @Model.Author</li>
-        <li class="list-group-item">ISBN: @Model.Isbn</li>
-        <li class="list-group-item">Assunto: @Model.Subject</li>
-        </ul>
-    </div>
-    <div class="mt-5 ">
-        <form asp-action="Post" asp-controller="Reservations">
-            <input type="hidden" name="AcademicRecord" value="1600041" />
-            <input type="hidden" name="Isbn" value="@Model.Isbn" />
-            <button class="btn btn-primary">Reservar este livro</button>
-        </form>
-    </div>
+        <div class="card" style="width: 20rem;">
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Autor: @Model.Author</li>
+            <li class="list-group-item">ISBN: @Model.Isbn</li>
+            <li class="list-group-item">Assunto: @Model.Subject</li>
+            </ul>
+        </div>
+        <div class="mt-5 ">
+            <form asp-action="Post" asp-controller="Reservations">
+                <input type="hidden" name="AcademicRecord" value="1600041" />
+                <input type="hidden" name="Isbn" value="@Model.Isbn" />
+                <button class="btn btn-primary">Reservar este livro</button>
+            </form>
+        </div>
     </div>
     <div class="col-12 card">
     <h4>Descrição</h4>
     @Model.Description
     </div>
 </section>
+@section SearchForm {
+    @Html.Partial("~/Features/BookCatalog/SearchForm.cshtml")
+}
