@@ -1,0 +1,32 @@
+@model IEnumerable<Library.Features.BookCatalog.DomainModel.Book>
+@using Library.Features.BookCatalog;
+
+<main class="container ml-4">
+    <div>
+        <section id="" class="mt-4 row">
+            <div class="caption col-md-11 mb-4" style="background-color: #337ab7; height:300px;">
+                <h1 class="h1 display-4" style="color: #f7f7f7;">SteelCode Library System</h1>
+            </div>
+            <div class="row mt-2">
+            @foreach(var book in Model)
+            {
+                <div class="col-3">
+                    <div class="col-2.5 mb-4">
+                        <div class="thumbnail">
+                            <img src="@book.Cover" Style = "height:232px;" >
+                            <div class="caption">
+                                <h5>@book.Title</h5>
+                                <a asp-action="Details" asp-controller="Books" asp-route-isbn="@book.Isbn" class="btn btn-primary" role="button">ver mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+        </section>
+    </div>
+</main>
+
+@section SearchForm {
+    @Html.Partial("~/Features/BookCatalog/SearchForm.cshtml")
+}
