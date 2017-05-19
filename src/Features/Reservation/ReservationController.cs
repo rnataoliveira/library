@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Features.Reservation
 {
-    [Route("reservations")]
+    [Route("reservas")]
     public class ReservationsController : Controller
     {
         readonly LibraryDbContext _context;
@@ -52,6 +52,12 @@ namespace Library.Features.Reservation
                 return NotFound();
 
             return View("Reservation", reservation);
+        }
+
+        [Route("minhas-reservas")]
+        public IActionResult MyReservations(Reservation.Commands.MakeAReservationCommand user) {
+            var myReservations = _context.Reservations.OrderByDescending(d => d.ReservationDate).Where(r => r.AcademicRecord == "1600041").Select(r => r.Book);
+            return View(myReservations);
         }
     }
 }
