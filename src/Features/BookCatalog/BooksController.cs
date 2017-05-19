@@ -28,7 +28,7 @@ namespace Library.Features.BookCatalog
                 
             return View(foundBook);
         }
-
+        
         public IActionResult Search(string q) 
         {
             //Inicialmente mostra todos os livros
@@ -47,7 +47,7 @@ namespace Library.Features.BookCatalog
                 return RedirectToAction("Details", new {
                     Isbn = books.First().Isbn
                 });
-
+            
             return View(books);
         }
     }
