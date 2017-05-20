@@ -18,7 +18,7 @@ namespace Library.Models
             book.Author = "Thomas, Dave";
             books.Add(book);
 
-            var book1 = new Book("9788575224625", 2);
+            var book1 = new Book("9788575224625", 0);
             book1.Subject = "Informática";
             book1.Title = "Python Fluente";
             book1.Cover = "https://images-na.ssl-images-amazon.com/images/I/51Ov4P3XiEL._SX357_BO1,204,203,200_.jpg";
@@ -26,7 +26,7 @@ namespace Library.Models
             book1.Author = "Ramalho, Luciano";
             books.Add(book1);
 
-            var book2 = new Book("9781491914397", 10);
+            var book2 = new Book("9781491914397", 0);
             book2.Subject = "Informática";
             book2.Title = "ASP.NET MVC 5 with Bootstrap and Knockout.js: Building Dynamic, Responsive Web Applications";
             book2.Cover = "https://images-na.ssl-images-amazon.com/images/I/517yImP8zeL._SX379_BO1,204,203,200_.jpg";

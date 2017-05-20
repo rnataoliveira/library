@@ -15,9 +15,16 @@ namespace Library.Features.Home
             _context = context;
         }
         
-        [Route("home")]
+        [Route("")]
         public IActionResult Home(Reservation.Commands.MakeAReservationCommand user) {
-            var lastReservations = _context.Reservations.OrderByDescending(d => d.ReservationDate).Where(r => r.AcademicRecord == "1600041").Select(r => r.Book).Take(4);
+            var lastReservations = _context
+                .Reservations
+                .OrderByDescending(d => d.ReservationDate)
+                .Select(reservation => reservation.Book)
+                .GroupBy(book => book.Isbn)
+                .Take(4)
+                .Select(group => group.FirstOrDefault());
+
             return View(lastReservations);
         }
     }
