@@ -16,9 +16,11 @@
                             <img src="@book.Cover" Style = "height:232px;" >
                             <div class="caption">
                                 <h5>@book.Title</h5>
-                                <a asp-action="Details" asp-controller="Books" asp-route-isbn="@book.Isbn" class="btn btn-primary" role="button">ver mais</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="mt-6">
+                        <a asp-action="Details" asp-controller="Books" asp-route-isbn="@book.Isbn" class="btn btn-primary mt-3" role="button">ver mais</a>
                     </div>
                 </div>
             }
