@@ -50,6 +50,11 @@ namespace Library.Models
                     context.Books.Add(bk);
             });
 
+            // var user = new  User();
+            // user.RA = "1600041";
+            // user.Password = "asdf@159";
+            // context.Add(user);
+
             context.SaveChanges();
         }
     }
