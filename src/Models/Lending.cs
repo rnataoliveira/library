@@ -11,7 +11,7 @@ namespace Library.Models
         
         public Administrator Admin { get; set; }
 
-        public User user { get; set; }
+        // public User user { get; set; }
     
         public DateTime InitialDate { get; set; }
 

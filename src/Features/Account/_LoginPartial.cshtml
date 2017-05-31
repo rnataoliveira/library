@@ -7,18 +7,16 @@
 {
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" asp-action="Home" asp-controller="Home">Home</a>
+            <!--<a class="nav-link" asp-action="Home" asp-controller="Home">Home</a>-->
         </li>
         <li class="nav-item btn-group">
-            <a id="current-user-menu" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            <a id="current-user-menu" class="nav-link"  aria-haspopup="true" aria-expanded="false"
                 href="#">
                 Olá @UserManager.GetUserAsync(User).Result.Name!
             </a>
-            <div class="dropdown-menu" aria-labelledby="current-user-menu">
-                <a class="dropdown-item" href="#">Meus empréstimos</a>
-                <a class="dropdown-item" asp-action="MyReservations" asp-controller="MyReservations">Minhas Reservas</a>
-                <a class="dropdown-item" asp-action="Logout" asp-controller="Account">Logout</a>
-            </div>
+            <!--<a class="dropdown-item" href="#">Meus empréstimos</a>-->
+            <a class="nav-link" asp-action="MyReservations" asp-controller="Reservations">Minhas Reservas</a>
+            <a class="nav-link" asp-action="Logout" asp-controller="Account">Sair</a>
         </li>
     </ul>
 }
@@ -28,7 +26,7 @@ else
         <li class="nav-item">
             <a class="nav-link" asp-action="Home" asp-controller="Home">Home</a>
         </li>
-        <li class="nav-item"><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
-        <li class="nav-item"><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+        <!--<li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>-->
+        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
     </ul>
 }
