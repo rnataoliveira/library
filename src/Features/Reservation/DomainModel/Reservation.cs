@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using Library.Models;
 using Library.Features.BookCatalog.DomainModel;
+using Library.Features.Account;
 
 namespace Library.Features.Reservation.DomainModel
 {
@@ -9,24 +10,21 @@ namespace Library.Features.Reservation.DomainModel
     {
         public Reservation() { }
 
-        public Reservation(string academicRecord, Book book)
+        public Reservation(ApplicationUser user, Book book)
         {
             if (!book.IsAvailableForReservation)
                 throw new InvalidOperationException("Book is not available for reservation.");
-
-            if(string.IsNullOrEmpty(academicRecord))
-                throw new ArgumentException(nameof(academicRecord));
-            
+                
             Number = Guid.NewGuid();
-            AcademicRecord = academicRecord;
+            User = user;
             Book = book;
             ReservationDate = DateTime.UtcNow;
         }
 
         [Key]
         public Guid Number { get; set; }
-
-        public string AcademicRecord { get; set; }
+        
+        public ApplicationUser User { get; set; }
 
         public Book Book { get; set; }
 

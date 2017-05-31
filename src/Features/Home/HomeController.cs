@@ -16,7 +16,8 @@ namespace Library.Features.Home
         }
         
         [Route("")]
-        public IActionResult Home(Reservation.Commands.MakeAReservationCommand user) {
+        public IActionResult Home() 
+        {
             var lastReservations = _context
                 .Reservations
                 .OrderByDescending(d => d.ReservationDate)
