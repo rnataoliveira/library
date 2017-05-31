@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Library.Features.Account;
 using Library.Features.BookCatalog.DomainModel;
 using Library.Models;
 
-namespace Library.Models
+namespace Library.Features.Lending
 {
     public class Lending
     {
@@ -11,7 +12,7 @@ namespace Library.Models
         
         public Administrator Admin { get; set; }
 
-        // public User user { get; set; }
+        public ApplicationUser user { get; set; }
     
         public DateTime InitialDate { get; set; }
 
