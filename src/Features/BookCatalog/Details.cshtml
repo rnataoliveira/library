@@ -1,4 +1,7 @@
 @model Library.Features.BookCatalog.DomainModel.Book
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
 
 <div class="col-12 mb-4 mt-4">
     <h1>@Model.Title</h1>
@@ -21,7 +24,6 @@
             @if(Model.IsAvailableForReservation) 
             {
                 <form asp-action="Post" asp-controller="Reservations">
-                    <input type="hidden" name="AcademicRecord" value="1600041" />
                     <input type="hidden" name="Isbn" value="@Model.Isbn" />
                     <button class="btn btn-primary">Reservar este livro</button>
                 </form>

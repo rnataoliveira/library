@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biblioteca Impacta</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-light bg-faded navbar-toggleable-md">
+      <div class="container">
+        <a class="navbar-brand" asp-action="Home" asp-controller="Home">Biblioteca Impacta</a>
+        <div class="navbar-collapse justify-content-end" id="navbarSupportedContent">
+          @RenderSection("SearchForm", false)
+          @await Html.PartialAsync("~/Features/Account/_LoginPartial.cshtml")
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+      @RenderBody()
+  </main>
+  @RenderSection("Scripts", required: false)
+</body>
+</html>

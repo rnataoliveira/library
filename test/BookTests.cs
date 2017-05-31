@@ -2,6 +2,7 @@ using System;
 using Library.Models;
 using Xunit;
 using Shouldly;
+using Library.Features.BookCatalog.DomainModel;
 
 namespace Library.Tests
 {

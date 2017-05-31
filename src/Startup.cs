@@ -14,6 +14,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Library.Models;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Library.Features.Account;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Library.Services;
 
 namespace Library
 {
@@ -62,6 +65,13 @@ namespace Library
                 
                     options.UseSqlServer(connectionStrings);
                 });
+            
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<LibraryDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +81,8 @@ namespace Library
 
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
+
+            app.UseIdentity();
 
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
