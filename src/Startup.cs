@@ -17,6 +17,9 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Library.Features.Account;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Library.Services;
+using Library.Features.Lending;
+using Microsoft.AspNetCore.Identity;
+using Library.Features.Lending.DomainModel;
 
 namespace Library
 {
@@ -72,6 +75,12 @@ namespace Library
 
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<ILendingExpirationService, LendingExpirationService>();
+
+            // services.AddAuthorization(options =>
+            // {
+            //     options.AddPolicy("EmployeeOnly", policy => policy.RequireRole(""));
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,8 +97,11 @@ namespace Library
             app.UseMvcWithDefaultRoute();
 
             //Ciar alguns registros iniciais no banco de dados
-            using(var scope = app.ApplicationServices.CreateScope())
-                scope.ServiceProvider.GetService<LibraryDbContext>().SeedDatabase();
+            using(var scope = app.ApplicationServices.CreateScope()) 
+            {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                scope.ServiceProvider.GetService<LibraryDbContext>().SeedDatabase(roleManager);
+            }
 
         }
     }

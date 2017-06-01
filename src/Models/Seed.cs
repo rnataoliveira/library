@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Features.BookCatalog.DomainModel;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Library.Models 
 {
     public static class Seed 
     {
-        public static void SeedDatabase(this LibraryDbContext context)
+        public static void SeedDatabase(this LibraryDbContext context, RoleManager<IdentityRole> roleManager)
         {
             var books = new List<Book>();
 
@@ -33,7 +35,7 @@ namespace Library.Models
             book2.Description = "Bring dynamic server-side web content and responsive web design together to build websites that work and display well on any resolution, desktop or mobile. With this practical book, you’ll learn how by combining the ASP.NET MVC server-side language, the Bootstrap front-end framework, and Knockout.js—the JavaScript implementation of the Model-View-ViewModel pattern.";
             book2.Author = "Munro, Jamie";
             books.Add(book2);
-            
+
             var book3 = new Book("9781449320317", 0);
             book3.Subject = "Informática";
             book3.Title = "Programming ASP.NET MVC 4: Developing Real-World Web Applications with ASP.NET MVC";
@@ -42,18 +44,22 @@ namespace Library.Models
             book3.Author = "Chadwick, Jess";
             books.Add(book3);
 
-            books.ForEach(bk => 
+            books.ForEach(bk =>
             {
-                if(context.Books.Any(b => b.Isbn == bk.Isbn))
+                if (context.Books.Any(b => b.Isbn == bk.Isbn))
                     context.Books.Update(bk);
                 else
                     context.Books.Add(bk);
             });
 
-            // var user = new  User();
-            // user.RA = "1600041";
-            // user.Password = "asdf@159";
-            // context.Add(user);
+            if (!roleManager.RoleExistsAsync("LibraryManager").Result)
+                roleManager.CreateAsync(new IdentityRole("LibraryManager")).Wait();
+
+            if (!roleManager.RoleExistsAsync("Student").Result)
+                roleManager.CreateAsync(new IdentityRole("Student")).Wait();
+
+            if (!roleManager.RoleExistsAsync("Staff").Result)
+                roleManager.CreateAsync(new IdentityRole("Staff")).Wait();
 
             context.SaveChanges();
         }
